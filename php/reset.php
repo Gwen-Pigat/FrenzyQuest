@@ -2,8 +2,6 @@
 
 session_start();
 
-include "../include/header.php"; 
-
 extract($_POST);
 
 $host = "localhost"; 

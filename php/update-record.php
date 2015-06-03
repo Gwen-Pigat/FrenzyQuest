@@ -14,8 +14,9 @@ mysql_select_db("$db_name")or die("cannot select DB");
 
 
 if (isset($_GET['update']) ) {
+	$id = $_GET['update'];
 
-	$sql = "UPDATE quests SET Validation = 'Validé par Admin'";
+	$sql = "UPDATE quests SET Validation = 'Validé par Admin' WHERE id='$id'";
 	$result = mysql_query($sql) or die("Failed".mysql_error());
 	echo "<meta http-equiv='refresh' content='0;url=../liste-des-defis.php'>"; 
 }

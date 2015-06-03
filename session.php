@@ -35,12 +35,10 @@ $count = mysql_num_rows($result);
 		$_SESSION['myusername'] = $myusername;
 		$_SESSION['mypassword'] = $mypassword;
 		header('Location: login_success.php');
-		
 	}
 
 	else{	
 		header('Location: index.html');
-		echo "lool";
 	}
 
 ?>

@@ -50,8 +50,8 @@ $result = mysql_query($sql);
 		echo ("<ul><li><strong>Défi</strong> : '$row[Defi]' <br />
 					   <strong>Catégorie</strong> : '$row[Type]' <br />
 					   <strong>Description</strong> : '$row[Description]' <br />
-					   Ce défi est actuellement : <br /><strong>'$row[Validation]'</strong><br />
-			   		   <strong>Prime</strong> : '$row[Bounty] C' <br />
+					   <button class='btn btn-success'>Ce défi est actuellement : <br /><strong>'$row[Validation]'</strong></button><br />
+			   		   <button class='btn btn-danger'><strong>Prime</strong> : $row[Bounty] C' </button><br />
 			   </li></ul>");
 	}
 
