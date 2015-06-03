@@ -5,7 +5,7 @@
 
 <div class="liste-defis">
 
-	<h2><i class="fa fa-users"></i> Liste des utilisateurs</h2>
+	<h2><i class="fa fa-users"></i> Utilisateurs</h2>
 
 <?php
 
