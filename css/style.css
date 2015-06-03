@@ -1,0 +1,49 @@
+.form-inscription{
+	margin-top: 10%;
+}
+
+.form-inscription input{
+	padding: 2%;
+	margin: 2%;
+}
+
+h1, h2, h3, h4, h5, h6{
+	font-size: 1.6em;
+	margin: 20% 0% 10% 0%;
+	text-align: center;
+}
+
+.liste-defis li{
+	margin: 5% 5% 0% 0%;
+  word-break: break-all;
+}
+
+/*select{
+  padding: 2%;
+  border-radius: 5px;
+  background-color: rgb(240, 0, 0);
+  color: white;
+  border: 2px black solid;
+}*/
+
+.liste-defis{
+  margin: 10% 0% 10% 0%;
+  background-color: #2D2D2D;
+  max-height: 300px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  border-radius: 10px;
+  border: 0px solid;
+  padding: 3%;
+  color: white;
+}
+
+.liste-defis h2{margin: 5%; padding: 5%; background-color: red; color: white; border-radius: 10px;}
+
+.btn-purple{padding: 3%; font-size: 14px; color: white; background-color: rgb(165, 0, 200); border: 2px rgb(165, 0, 200) solid;}
+.btn-purple:hover{transition: 0.4s; background-color: white; color: rgb(165, 0, 200); border: 2px rgb(165, 0, 200) solid};
+
+.btn-orange{color: white; background-color: black; border: 2px #ff8c0a solid;}
+.btn-orange:hover{transition: 0.4s; background-color: white; color: #ff8c0a; border: 2px #ff8c0a solid};
+
+.btn:hover{transition: 0.4s};
