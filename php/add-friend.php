@@ -24,7 +24,7 @@ header('Location: ../liste-utilisateurs.php');
 }
 
 else{
-	echo "Critical error motherfucker !!";
+	echo "Erreur :( !!";
 }
 
 
