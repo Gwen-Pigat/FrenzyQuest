@@ -1,6 +1,5 @@
 <?php 
 
-
 session_start();
 
 include "../include/header.php"; 
@@ -24,7 +23,7 @@ $row = mysql_fetch_assoc($result);
 
 
 $base = $row['credits'];
-$base = $base + 99;
+$base = $base + 10;
 
 
 $sql = "UPDATE members SET credits='$base' WHERE username='Admin'";

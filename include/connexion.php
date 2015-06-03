@@ -15,7 +15,7 @@ $sql = "SELECT * FROM $tbl_name WHERE username='$_SESSION[myusername]'";
 $result = mysql_query($sql);
 $row = mysql_fetch_assoc($result);
 
-    echo "Loggé en tant que : <strong>'$_SESSION[myusername]'</strong> , <a href=index.html><button class='btn btn-danger'>se déconnecter ?</button></a>
+    echo "Loggé en tant que : <strong>'$_SESSION[myusername]'</strong> , <a href=index.html><button class='btn btn-warning'><span class='glyphicon glyphicon-user'></span> Déconnexion</button></a>
     Vous disposez de : '<strong>$row[credits] C</strong>'";
 
 

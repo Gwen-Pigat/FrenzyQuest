@@ -58,9 +58,6 @@ while ($row = mysql_fetch_assoc($result)) {
  } ?>
 
 </div>
-<center>
-<a href="defi.php">
-<button class="btn-lg btn-purple">Proposer un défi</button></a>
-<a href="login_success.php">
-<button class="btn-lg btn-purple">Accueil</button></a>
-</center>
+
+<a class="text-center" href="login_success.php">
+	<button class="btn btn-purple">Retour</button></a>

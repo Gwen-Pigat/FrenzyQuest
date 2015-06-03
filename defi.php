@@ -21,10 +21,7 @@
 			<input class="btn btn-danger" type="submit" value="Envoyer">
 		</form>
 
-	
-
 <br>
-<meta charset="utf-8">
 	<a href="login_success.php">
 	<button class="btn-lg btn-purple">Retour à l'Accueil</button></a>
 

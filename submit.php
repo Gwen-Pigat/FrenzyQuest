@@ -23,18 +23,9 @@
 <a href="defi.php">
 <button class="btn btn-success">Proposer un défi</button></a>
 
+<?php include "include/menu.php"; ?>
+
 </div>
-
-<?php if ($_SESSION['myusername'] == 'Admin') {
- ?>
- 
-<a href="liste-des-defis.php">
-<button class="btn btn-primary">Liste des défis</button></a>
-
-<?php } ?>
-
-
-
 
 <?php 
 

@@ -1,4 +1,5 @@
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="css/style.css">
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
@@ -15,10 +16,10 @@ $query = mysql_query("SELECT * FROM members WHERE username='$_POST[myusername]' 
 
 
 if (mysql_num_rows($query)) { ?>
-
+<br><br><br>
 <div class="container text-center">
   <br><br>
-  <p><strong>Nom ou adresse e-mail déja utilisé</strong></p><br />
+  <p style="font-size: 20px"><strong><i class="fa fa-exclamation-triangle"></i> Nom ou adresse e-mail déja utilisé</strong></p><br />
 <a href="creation-compte.php">
 <button class="btn btn-purple">Ré-essayer</button> </a>
 

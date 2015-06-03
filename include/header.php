@@ -1,5 +1,7 @@
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="css/style.css">
+
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
@@ -17,20 +19,20 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="login_success.php">FrenzyQuest</a>
+      <a class="navbar-brand" href="login_success.php"><span class="glyphicon glyphicon-home"></span> FrenzyQuest</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="defi.php">Proposer un défi</a></li>
-        <li><a href="liste-utilisateurs.php">Liste des utilisateurs</a></li>
+        <li><a href="defi.php"><span class="glyphicon glyphicon-edit"></span> Proposer un défi</a></li>
+        <li><a href="liste-utilisateurs.php"><i class="fa fa-users"></i> Liste des utilisateurs</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Mon compte<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="profil.php">Profil</a></li>
-            <li><a href="#">Mes amis</a></li>
-            <li><a href="mes-defis.php">Mes défis</a></li>
+            <li><a href="mon-profil.php"><i class="glyphicon glyphicon-user"></i> Profil</a></li>
+            <li><a href="friends-list.php"><i class="fa fa-user-plus"> Mes amis </i></a></li>
+            <li><a href="mes-defis.php"><i class="glyphicon glyphicon-list-alt"></i> Mes défis</a></li>
           </ul>
         </li>
       </ul>
