@@ -11,6 +11,9 @@ body{
 	margin: 2%;
 }
 
+li a{color: white;}
+li a:hover{text-decoration: none; transition: 0.4s; color: #ff0000;}
+
 .icon{width: 30px}
 
 h1, h2, h3, h4, h5, h6{
@@ -44,8 +47,8 @@ h1, h2, h3, h4, h5, h6{
   color: white;
 }
 
-.liste-defis h2{margin: 5%; padding: 5%; background-color: red; color: #fff; border-radius: 10px;}
+.liste-defis h2{margin: 5% 0% 10% 0%; padding: 5%; background-color: #f0ad4e; color: #fff; border-radius: 10px;}
 
 
-.btn-purple{padding: 3%; font-size: 14px; color: #fff; background-color: #FF0000; border: 2px #FF0000 solid;}
-.btn-purple:hover{transition: 0.4s; background-color: #fff; color: #FF0000; border: 2px #FF0000 solid};
+.btn-purple{padding: 3%; font-size: 14px; color: #fff; background-color: #f0ad4e; border: 2px #f0ad4e solid;}
+.btn-purple:hover{transition: 0.4s; background-color: #fff; color: #f0ad4e; border: 2px #f0ad4e solid};

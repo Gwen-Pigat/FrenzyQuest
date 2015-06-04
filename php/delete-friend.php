@@ -13,8 +13,7 @@ mysql_select_db("$db_name")or die("cannot select DB");
 
 if (isset($_GET['delete'])) {
 
-	$sql = mysql_query("DELETE FROM Amis WHERE Utilisateur_second='$_GET[delete]'") or die("Erreur : " .mysql_error());
-
+	$sql = mysql_query("DELETE FROM Amis WHERE (Utilisateur_second='$_GET[delete]') OR (Utilisateur_first='$_GET[delete]')") or die("Erreur : " .mysql_error());
 	$result = mysql_fetch_assoc($sql);
 
 header('Location: ../liste-utilisateurs.php');

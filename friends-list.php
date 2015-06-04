@@ -5,22 +5,26 @@
 
 <div class="liste-defis">
 
-	<h2>Mes amis</h2>
+	<h2><i class="fa fa-users"></i> Amis</h2>
 
 <?php
 
-$row = "SELECT id FROM members WHERE username='$_SESSION[myusername]'"; 
-$result_liste = mysql_query($row);
+$sql_liste = "SELECT id FROM members WHERE username='$_SESSION[myusername]'"; 
+$result_liste = mysql_query($sql_liste);
 
-$sql = "SELECT Utilisateur_second FROM Amis WHERE Utilisateur_second!='$row[id]'";
+$row_liste = mysql_fetch_assoc($result_liste);
+
+
+$sql = "SELECT * FROM Amis WHERE (Utilisateur_first!='$row_liste[id]') OR (Utilisateur_second!='$row_liste[id]')";
 $result = mysql_query($sql);
 
-while (mysql_fetch_assoc($result_liste)) {
-	echo "<li>$row[username]</li>";
+while ($row = mysql_fetch_assoc($result)) {
+
+	echo "<li>$row[Utilisateur_second]</li>";
 }
 
 ?>
 
-<?php include "include/menu.php"; ?>
-
 </div>
+
+<a class="text-center" href="login_success.php"><button class="btn btn-purple">Retour</button></a>

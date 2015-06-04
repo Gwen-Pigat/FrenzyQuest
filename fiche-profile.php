@@ -26,7 +26,7 @@
 			$sql = mysql_query("SELECT * FROM members WHERE username='$_SESSION[myusername]'");
 			$row = mysql_fetch_assoc($sql);
 
-			$friend = mysql_query("SELECT id FROM Amis WHERE (Utilisateur_first='$row[id]' AND Utilisateur_second='$user') OR (Utilisateur_first='$user' AND Utilisateur_second='$row[id]')");	
+			$friend = mysql_query("SELECT * FROM Amis WHERE (Utilisateur_first='$row[id]' AND Utilisateur_second='$user') OR (Utilisateur_first='$user' AND Utilisateur_second='$row[id]')");	
 
 			if (mysql_num_rows($friend) == 1) {
 				echo "<p>Cet utilisateur est votre ami</p><br />
@@ -35,25 +35,27 @@
 			}
 			else{
 
-				$sql = mysql_query("SELECT * FROM members WHERE username='$_SESSION[myusername]'");
-				$row = mysql_fetch_assoc($sql);
+				// $sql = mysql_query("SELECT * FROM members WHERE username='$_SESSION[myusername]'");
+				// $row = mysql_fetch_assoc($sql);
 
-				$to_query = mysql_query("SELECT id FROM RequeteAmi WHERE Nom='$row[id]' AND Invite='$user'");
-				$from_query = mysql_query("SELECT id FROM RequeteAmi WHERE Nom='$user' AND Invite='$myaccount'");
+				// $to_query = mysql_query("SELECT id FROM RequeteAmi WHERE Nom='$row[id]' AND Invite='$user'");
+				// $from_query = mysql_query("SELECT id FROM RequeteAmi WHERE Nom='$user' AND Invite='$myaccount'");
 
-				if (mysql_num_rows($from_query) == 1) {
-					echo "<a href='#' class='btn btn-purple'>Ignore</a> | <a href='#' class='btn btn-purple'>Accept</a>";
-				}
-				elseif (mysql_num_rows($to_query) == 1) {
-					echo "<a href='#'>Cancel request</a>";
-				}
-				else{
-					echo "<a href='actions.php?action=send&user=$user'>Send Friend request</a>";
-				}
+				// if (mysql_num_rows($from_query) == 1) {
+				// 	echo "<a href='#' class='btn btn-purple'>Ignore</a> | <a href='#' class='btn btn-purple'>Accept</a>";
+				// }
 
-				// echo "<p>Cet utilisateur ne fait pas encore partie de votre liste d'amis</p><br />
-				// 	  <a href='php/add-friend.php?add=$user'>
-				// 	  <button class='btn btn-success'><i class='fa fa-user-plus'> Ajouter </i></button></a>";
+				// elseif (mysql_num_rows($to_query) == 1) {
+				// 	echo "<a href='#'>Cancel request</a>";
+				// }
+				
+				// else{
+				// 	echo "<a href='actions.php?action=send&user=$user'>Send Friend request</a>";
+				// }
+
+				echo "<p>Cet utilisateur ne fait pas encore partie de votre liste d'amis</p><br />
+					  <a href='php/add-friend.php?add=$user'>
+					  <button class='btn btn-success'><i class='fa fa-user-plus'> Ajouter </i></button></a>";
 			}	
 	} 
 

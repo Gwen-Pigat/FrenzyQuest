@@ -11,6 +11,6 @@ if ($action == 1) {
 	mysql_query("INSERT INTO RequeteAmi(Nom, Invite) VALUES ('$_SESSION[myusername]', '$user')");
 }
 
-header('Location: profile.php?user=$user');
+header('Location: fiche-profile.php?user=$user');
 
 ?>

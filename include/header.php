@@ -28,7 +28,7 @@
         <li><a href="defi.php"><span class="glyphicon glyphicon-edit"></span> Proposer un défi</a></li>
         <li><a href="liste-utilisateurs.php"><i class="fa fa-users"></i> Liste des utilisateurs</a></li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Mon compte<span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-unlock"></i> Mon compte<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="mon-profil.php"><i class="glyphicon glyphicon-user"></i> Profil</a></li>
             <li><a href="friends-list.php"><i class="fa fa-user-plus"> Mes amis </i></a></li>

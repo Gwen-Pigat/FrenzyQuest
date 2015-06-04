@@ -1,4 +1,5 @@
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="css/style.css">
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
@@ -21,7 +22,6 @@
 		<input type="telephone" placeholder="Téléphone" name="telephone" required><br>
 		<input class="btn btn-danger" type="submit" value="Valider">
 	</form>
-
 	<a href="index.html">
 	<button class="btn btn-primary">Accueil</button></a>
 </div>
