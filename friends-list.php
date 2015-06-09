@@ -9,18 +9,17 @@
 
 <?php
 
-$sql_liste = "SELECT id FROM members WHERE username!='$_SESSION[myusername]'"; 
-$result_liste = mysqli_query($link, $sql_liste);
-
-$row_liste = mysqli_fetch_assoc($result_liste);
+$myaccount = $_SESSION ['myusername'];
 
 
-$sql = "SELECT * FROM Amis WHERE (Utilisateur_first!='$_SESSION[myusername]') AND (Utilisateur_second!='$_SESSION[myusername]')";
+$sql = "SELECT * FROM Amis";
 $result = mysqli_query($link, $sql);
+$row = mysqli_fetch_assoc($result);
 
-
-while ($row = mysqli_fetch_assoc($result)) {
-
+if ($row == 0) {
+	echo "<a href='liste-utilisateurs.php'><button class='btn btn-success'><i class='fa fa-user-plus'></i> Ajouter un ami</button></a>";
+}
+else{
 	echo "<li>$row[Utilisateur_first]</li>
 	<li>$row[Utilisateur_second]</li>";
 }

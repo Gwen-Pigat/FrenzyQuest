@@ -12,7 +12,6 @@
 $sql = "SELECT * FROM quests WHERE Expediteur='$_SESSION[myusername]'";
 $result = mysqli_query($link, $sql);
 
-
 	while ($row = mysqli_fetch_assoc($result)) {
 		echo "<ul><li><strong>Défi</strong> : '$row[Defi]' <br />
 					   <strong>Catégorie</strong> : '$row[Type]' <br />

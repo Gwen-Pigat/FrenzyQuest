@@ -3,31 +3,67 @@
 session_start();
 
 include "../include/header.php"; 
+include "../include/connexion.php"; 
 
-extract($_POST);
+if (isset($_SESSION) && $_SESSION['myusername'] == 'Admin') {
 
-$host = "localhost"; 
-$username = "root"; 
-$password = "motdepasselocalhostgwen"; 
-$db_name = "QuitDouble"; 
-$tbl_name = "members";
+	//Ajout de + 10 crédits
 
-$link = mysqli_connect("$host", "$username", "$password", "$db_name");
+	if (isset($_GET['addmoney'])) {
+		$sql = "SELECT * FROM members WHERE username='Admin'";
 
-$sql = "SELECT credits FROM $tbl_name WHERE username='Admin'";
+		$result = mysqli_query($link, $sql);
+		$row = mysqli_fetch_assoc($result);
 
-$result = mysqli_query($link, $sql);
-$row = mysqli_fetch_assoc($result);
+		$base = $row['credits'];
+		$base = $base + 10;
+
+		$sql = "UPDATE members SET credits='$base' WHERE username='Admin'";
+		$result = mysqli_query($link, $sql);
+		$row = mysqli_fetch_assoc($result);
+	}
 
 
-$base = $row['credits'];
-$base = $base + 10;
+
+	//Retrait de 10 crédits
+
+	elseif (isset($_GET['delmoney'])) {
+		$sql = "SELECT * FROM members WHERE username='Admin'";
+
+		$result = mysqli_query($link, $sql);
+		$row = mysqli_fetch_assoc($result);
+
+		$base = $row['credits'];
+		$base = $base - 10;
+
+		$sql = "UPDATE members SET credits='$base' WHERE username='Admin'";
+		$result = mysqli_query($link, $sql);
+		$row = mysqli_fetch_assoc($result);
+	}
 
 
-$sql = "UPDATE members SET credits='$base' WHERE username='Admin'";
-$result = mysqli_query($link, $sql);
-$row = mysqli_fetch_assoc($result);
+	//Reset à 0 crédits
+
+	elseif (isset($_GET['reset'])) {
+		$sql = "SELECT * FROM members WHERE username='Admin'";
+
+		$result = mysqli_query($link, $sql);
+		$row = mysqli_fetch_assoc($result);
+
+		$base = $row['credits'];
+		$base = 0;
+
+		$sql = "UPDATE members SET credits='$base' WHERE username='Admin'";
+		$result = mysqli_query($link, $sql);
+		$row = mysqli_fetch_assoc($result);
+	}
+}
 
 header('Location: ../login_success.php');
+
+
+else{
+	header('Location: logout.php');
+}
 
 ?>

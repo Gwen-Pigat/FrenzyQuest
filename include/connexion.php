@@ -32,7 +32,7 @@ else{
 	header('Location: php/logout.php');
 }
 
-$sql = "SELECT Destinataire FROM SendQuest WHERE Destinataire='$_SESSION[myusername]'";
+$sql = "SELECT Destinataire FROM SendQuest WHERE Destinataire='$_SESSION[myusername]' AND Statut='En attente'";
 $result = mysqli_query($link, $sql);
 $row = mysqli_fetch_assoc($result);
 

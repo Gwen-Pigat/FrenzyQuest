@@ -1,3 +1,5 @@
+<?php include "functions.php"; ?>
+
 <div class="container text-center">
 
 <a href="liste-utilisateurs.php">

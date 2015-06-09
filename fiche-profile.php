@@ -29,7 +29,7 @@
 
 			if (mysqli_fetch_assoc($friend)) {
 				echo "<p>Cet utilisateur est votre ami</p><br />
-					  <a href='php/delete-friend.php?delete=$user'>
+					  <a href='php/request-console.php?delete_user=$user'>
 					  <button class='btn btn-danger'><i class='fa fa-user-times'> Supprimer ? </i></button></a>";
 			}
 			
@@ -43,15 +43,15 @@
 
 				if (mysqli_num_rows($from_query) == 1) {
 					echo "<center>Cet utilisateur vous a envoyé une requête d'ami<br><br>
-					<a href='php/accept-request.php?user=$user' class='btn btn-success'>Accepter</a> | <a href='php/denied-request.php?user=$user' class='btn btn-danger'>Refuser</a></center>";
+					<a href='php/request-console.php?accept_user=$user' class='btn btn-success'>Accepter</a> | <a href='php/request-console.php?refuse_user=$user' class='btn btn-danger'>Refuser</a></center>";
 				}
 				
 				elseif (mysqli_num_rows($to_query) == 1) {
-					echo "<p>Une requête d'ami a déja été envoyé.</p><br><a href='php/delete-request.php?user=$user'><button class='btn btn-danger'><i class='fa fa-user-times'>Annuler la requête</i></button></a>";
+					echo "<p>Une requête d'ami a déja été envoyé.</p><br><a href='php/request-console.php?cancel_user=$user'><button class='btn btn-danger'><i class='fa fa-user-times'>Annuler la requête</i></button></a>";
 				}
 				
 				else{
-					echo "<p>Cet utilisateur ne fait pas encore partie de votre liste d'amis.</p><br><a href='php/send-request.php?user=$user'><button class='btn btn-success'><i class='fa fa-user-plus'>Envoyer une requête d'ami</i></button></a>";
+					echo "<p>Cet utilisateur ne fait pas encore partie de votre liste d'amis.</p><br><a href='php/request-console.php?send_user=$user'><button class='btn btn-success'><i class='fa fa-user-plus'>Envoyer une requête d'ami</i></button></a>";
 				}
 				
 			}	
