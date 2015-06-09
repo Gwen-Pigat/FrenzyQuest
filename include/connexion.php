@@ -12,19 +12,34 @@ $password = "motdepasselocalhostgwen";
 $db_name = "QuitDouble"; 
 $tbl_name = "members";
 
-mysql_connect("$host","$username","$password")or die("Cannot connect"); 
-mysql_select_db("$db_name")or die("cannot select DB");
+$link = mysqli_connect("$host", "$username", "$password", "$db_name");
+
 $sql = "SELECT * FROM $tbl_name WHERE username='$_SESSION[myusername]'";
-$result = mysql_query($sql);
-$row = mysql_fetch_assoc($result);
+$result = mysqli_query($link ,$sql);
+$row = mysqli_fetch_assoc($result);
 
-    echo "Loggé en tant que : <strong>'$_SESSION[myusername]'</strong> , <a href=php/logout.php><button class='btn btn-warning'><span class='glyphicon glyphicon-user'></span> Déconnexion</button></a>
-    Vous disposez de : '<strong>$row[credits] C</strong>'";
-
+    echo "Salut <span class='user'> $_SESSION[myusername] </span> !!      
+    <a href=php/logout.php><button class='btn btn-warning container'><i class='glyphicon glyphicon-user'></i> Déconnexion</button></a><br />";
+    if ($row['credits'] < 1) {
+   	echo "Crédits : <span class='danger'> $row[credits] <i class='glyphicon glyphicon-piggy-bank'></i></span>";
+    }
+    else{
+    echo "Crédits : <span class='user'> $row[credits] <i class='glyphicon glyphicon-piggy-bank'></i></span>";
+	}
 }
 
 else{
 	header('Location: php/logout.php');
 }
 
-?>
+$sql = "SELECT Destinataire FROM SendQuest WHERE Destinataire='$_SESSION[myusername]'";
+$result = mysqli_query($link, $sql);
+$row = mysqli_fetch_assoc($result);
+
+if ($row) { ?>
+<br>
+<div class="absolute">
+<a href="quests-console.php"><img src="icons/exclamation.png" width="25"> Défi disponible</a>
+</div>
+
+<?php } ?>

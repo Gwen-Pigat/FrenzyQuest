@@ -1,30 +1,38 @@
 <?php 
 
-session_start();
-
-$host = "localhost";
-$username = "root";
-$password = "motdepasselocalhostgwen";
-$db_name = "QuitDouble";
-$tbl_name = "Amis";
-
-mysql_connect("$host","$username","$password")or die("Cannot connect");	
-mysql_select_db("$db_name")or die("cannot select DB");
+include "../include/header.php";
+include "../include/connexion.php";
 
 if (isset($_GET['delete'])) {
 
-	$sql = mysql_query("DELETE FROM Amis WHERE (Utilisateur_second='$_GET[delete]') OR (Utilisateur_first='$_GET[delete]')") or die("Erreur : " .mysql_error());
-	$result = mysql_fetch_assoc($sql);
+	$user = $_GET['delete'];
 
-header('Location: ../liste-utilisateurs.php');
+	$sql = "SELECT * FROM members WHERE id='$user'";
+	$result = mysqli_query($link, $sql);
+	$row = mysqli_fetch_assoc($result);
+
+	$sql = mysqli_query($link, "DELETE FROM RequeteAmi WHERE (Nom='$row[username]') OR (Invite='$row[username]')");
+	$sql = mysqli_query($link, "DELETE FROM Amis WHERE (Utilisateur_second='$row[username]') OR (Utilisateur_first='$row[username]')");
+	$result = mysqli_fetch_assoc($sql);
+
+
+?>
+<div class="container text-center">
+
+	<br><br><br>
+	<h3><i class='fa fa-exclamation-triangle fa-2x'></i> Requête annulée
+	<br><br><br><br><br>
+		<i class='fa fa-spinner fa-pulse fa-5x'></i>
+	
+</div>
+
+<?php header('refresh: 1; url=../liste-utilisateurs.php');
+
 }
 
 else{
-	echo "Une eereur est survenue lors de votre demande de suppression, veuillez ré-essayer ultérieurement !! <br />
+	echo "Une erreur est survenue lors de votre demande de suppression, veuillez ré-essayer ultérieurement !! <br />
 		  <button class='btn btn-purple'>Ré-essayer</button>";
 }
-
-
-
 
 ?>

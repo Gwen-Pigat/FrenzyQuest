@@ -10,28 +10,38 @@
 <?php
 
 $sql = "SELECT * FROM quests WHERE Expediteur='$_SESSION[myusername]'";
-$result = mysql_query($sql);
+$result = mysqli_query($link, $sql);
 
-	while ($row = mysql_fetch_assoc($result)) {
+
+	while ($row = mysqli_fetch_assoc($result)) {
 		echo "<ul><li><strong>Défi</strong> : '$row[Defi]' <br />
 					   <strong>Catégorie</strong> : '$row[Type]' <br />
-					   <strong>Description</strong> : '$row[Description]' <br />";
+					   <strong>Description</strong> : '$row[Description]' <br /><br />";
 					   ?>
 					   <?php if ($row['Validation'] == "En attente de validation") {
-					   	echo "<button class='btn btn-danger'>Ce défi est actuellement : <br /><strong>'$row[Validation]'</strong></button><br />";
+					   		echo "<button class='btn btn-danger'><strong>Défi '$row[Validation]'</strong></button>";
 					   		}
 					   		else{
-					   	echo "<button class='btn btn-success'>Ce défi est actuellement : <br /><strong>'$row[Validation]'</strong></button><br />
-					   		  <a href='send-quest.php?quest=$row[id]'><button class='btn btn-purple'>Envoyer ce défi</button></a>";		
+					   		echo "<button class='btn btn-success'><strong>Défi '$row[Validation]'</strong></button>
+					   		  <a href='send-quest.php?quest=$row[id]'><button class='btn btn-warning'>Envoyer ce défi</button></a>";		
 					   		}
-					   ?>
-					   
-			   		   <?php  echo "<button class='btn btn-danger'><strong>Prime</strong> : $row[Bounty] C' </button><br />
-			   </li></ul>";
+
+					   		$sql_credits = "SELECT credits FROM members WHERE username ='$_SESSION[myusername]'";
+							$result_credits = mysqli_query($link, $sql_credits);
+							$row_credits = mysqli_fetch_assoc($result_credits);
+
+					   		if ($row['Bounty'] > $row_credits['credits']) {
+					   		echo "<button class='btn btn-danger'>$row[Bounty] <i class='glyphicon glyphicon-piggy-bank'></i> </button><br><br>
+			   				</li></ul>";	
+					   		}
+					   		else{
+				   			echo "<button class='btn btn-success'>$row[Bounty] <i class='glyphicon glyphicon-piggy-bank'></i> </button><br><br></li></ul>";
+					   		}
 	}
 
 ?>
 
  </div>
-
-<a href="login_success.php"><button class="btn btn-purple center">Retour</button></a>
+<center>
+<a href="quests-console.php"><button class="btn btn-purple center">Retour</button></a>
+</center>

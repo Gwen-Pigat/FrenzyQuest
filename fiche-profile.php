@@ -7,8 +7,9 @@
 
 	<?php if (isset($_GET['user']) && !empty($_GET['user'])){ 
 
-		$sql = mysql_query("SELECT * FROM members WHERE id='$_GET[user]'");
-		$row = mysql_fetch_assoc($sql);
+		$sql = "SELECT * FROM members WHERE id='$_GET[user]'";
+		$result = mysqli_query($link, $sql);
+		$row = mysqli_fetch_assoc($result);
 
 	?>
 
@@ -23,39 +24,36 @@
 
 	if ($user != $myaccount) {
 
-			$sql = mysql_query("SELECT * FROM members WHERE username='$_SESSION[myusername]'");
-			$row = mysql_fetch_assoc($sql);
+			$sql = mysqli_query($link ,"SELECT * FROM members WHERE username='$_SESSION[myusername]'");
+			$friend = mysqli_query($link, "SELECT * FROM Amis WHERE (Utilisateur_first='$row[username]' AND Utilisateur_second='$myaccount') OR (Utilisateur_first='$myaccount' AND Utilisateur_second='$row[username]')");	
 
-			$friend = mysql_query("SELECT * FROM Amis WHERE (Utilisateur_first='$row[id]' AND Utilisateur_second='$user') OR (Utilisateur_first='$user' AND Utilisateur_second='$row[id]')");	
-
-			if (mysql_num_rows($friend) == 1) {
+			if (mysqli_fetch_assoc($friend)) {
 				echo "<p>Cet utilisateur est votre ami</p><br />
 					  <a href='php/delete-friend.php?delete=$user'>
-					  <button class='btn btn-danger'><i class='fa fa-user-times'> Enlever </i></button></a>";
+					  <button class='btn btn-danger'><i class='fa fa-user-times'> Supprimer ? </i></button></a>";
 			}
+			
 			else{
 
-				// $sql = mysql_query("SELECT * FROM members WHERE username='$_SESSION[myusername]'");
-				// $row = mysql_fetch_assoc($sql);
-
-				// $to_query = mysql_query("SELECT id FROM RequeteAmi WHERE Nom='$row[id]' AND Invite='$user'");
-				// $from_query = mysql_query("SELECT id FROM RequeteAmi WHERE Nom='$user' AND Invite='$myaccount'");
-
-				// if (mysql_num_rows($from_query) == 1) {
-				// 	echo "<a href='#' class='btn btn-purple'>Ignore</a> | <a href='#' class='btn btn-purple'>Accept</a>";
-				// }
-
-				// elseif (mysql_num_rows($to_query) == 1) {
-				// 	echo "<a href='#'>Cancel request</a>";
-				// }
+				$sql = mysqli_query($link ,"SELECT * FROM members WHERE id='$user'");
+				$row = mysqli_fetch_assoc($sql);
 				
-				// else{
-				// 	echo "<a href='actions.php?action=send&user=$user'>Send Friend request</a>";
-				// }
+				$to_query = mysqli_query($link, "SELECT * FROM RequeteAmi WHERE Nom='$myaccount' AND Invite='$row[username]'");
+				$from_query = mysqli_query($link, "SELECT * FROM RequeteAmi WHERE Nom='$row[username]' AND Invite='$myaccount'");
 
-				echo "<p>Cet utilisateur ne fait pas encore partie de votre liste d'amis</p><br />
-					  <a href='php/add-friend.php?add=$user'>
-					  <button class='btn btn-success'><i class='fa fa-user-plus'> Ajouter </i></button></a>";
+				if (mysqli_num_rows($from_query) == 1) {
+					echo "<center>Cet utilisateur vous a envoyé une requête d'ami<br><br>
+					<a href='php/accept-request.php?user=$user' class='btn btn-success'>Accepter</a> | <a href='php/denied-request.php?user=$user' class='btn btn-danger'>Refuser</a></center>";
+				}
+				
+				elseif (mysqli_num_rows($to_query) == 1) {
+					echo "<p>Une requête d'ami a déja été envoyé.</p><br><a href='php/delete-request.php?user=$user'><button class='btn btn-danger'><i class='fa fa-user-times'>Annuler la requête</i></button></a>";
+				}
+				
+				else{
+					echo "<p>Cet utilisateur ne fait pas encore partie de votre liste d'amis.</p><br><a href='php/send-request.php?user=$user'><button class='btn btn-success'><i class='fa fa-user-plus'>Envoyer une requête d'ami</i></button></a>";
+				}
+				
 			}	
 	} 
 

@@ -1,11 +1,13 @@
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="css/alertify.default.css">
 
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/alertify.js"></script>
 
 <meta charset="utf-8">
 
@@ -25,6 +27,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
+        <li><a href="quests-console.php"><span class="fa fa-list"></span> Voir les défis</a></li>
         <li><a href="defi.php"><span class="glyphicon glyphicon-edit"></span> Proposer un défi</a></li>
         <li><a href="liste-utilisateurs.php"><i class="fa fa-users"></i> Liste des utilisateurs</a></li>
         <li class="dropdown">

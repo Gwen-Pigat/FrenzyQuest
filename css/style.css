@@ -6,9 +6,27 @@ body{
 	margin-top: 10%;
 }
 
+.absolute{
+  position: fixed;
+  margin-top: 130%;
+}
+
+.absolute a{color: #FF0000 ;text-decoration:none}
+.absolute a:hover{text-shadow: 0 0 1px #ff0000; transition: 0.4s;}
+
 .form-inscription input{
 	padding: 2%;
 	margin: 2%;
+}
+
+.user{
+  color: #f0ad4e;
+  text-shadow: 0 0 1px #f0ad4e;
+}
+
+.danger{
+  color: #ff0000;
+  text-shadow: 0 0 1px #ff0000;
 }
 
 li a{color: white;}
@@ -52,3 +70,6 @@ h1, h2, h3, h4, h5, h6{
 
 .btn-purple{padding: 3%; font-size: 14px; color: #fff; background-color: #f0ad4e; border: 2px #f0ad4e solid;}
 .btn-purple:hover{transition: 0.4s; background-color: #fff; color: #f0ad4e; border: 2px #f0ad4e solid};
+
+.quest{padding: 3%; font-size: 14px; color: #fff; background-color: #f0ad4e; border: 2px #f0ad4e solid;}
+.quest:hover{transition: 0.4s; background-color: #fff; color: #f0ad4e; border: 2px #f0ad4e solid};

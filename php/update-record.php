@@ -2,22 +2,20 @@
 
 session_start();
 
-$host = "localhost";
-$username = "root";
-$password = "motdepasselocalhostgwen";
-$db_name = "QuitDouble";
+$host = "localhost"; 
+$username = "root"; 
+$password = "motdepasselocalhostgwen"; 
+$db_name = "QuitDouble"; 
 $tbl_name = "quests";
 
-mysql_connect("$host","$username","$password")or die("Cannot connect");	
-mysql_select_db("$db_name")or die("cannot select DB");
-// mysql_query("SET NAMES UTF8");
+$link = mysqli_connect("$host", "$username", "$password", "$db_name");
 
 
 if (isset($_GET['update']) ) {
 	$id = $_GET['update'];
 
-	$sql = "UPDATE quests SET Validation = 'Approuvé' WHERE id='$id'";
-	$result = mysql_query($sql) or die("Failed".mysql_error());
+	$sql = "UPDATE $tbl_name SET Validation = 'Approuvé' WHERE id='$id'";
+	$result = mysqli_query($link, $sql) or die("Failed".mysqli_error());
 	echo "<meta http-equiv='refresh' content='0;url=../liste-des-defis.php'>"; 
 }
 

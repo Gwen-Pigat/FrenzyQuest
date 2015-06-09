@@ -10,9 +10,9 @@
 <?php
 
 $sql = "SELECT * FROM $tbl_name WHERE username!='$_SESSION[myusername]'";
-$result = mysql_query($sql);
+$result = mysqli_query($link, $sql);
 
-while ($row = mysql_fetch_assoc($result)) {
+while ($row = mysqli_fetch_assoc($result)) {
 	echo "<li><a href=fiche-profile.php?user=$row[id]><strong><i class='fa fa-user'></i> $row[username]</strong></a><br /></li>";
 }
 
@@ -20,5 +20,6 @@ while ($row = mysql_fetch_assoc($result)) {
 
 </div>
 
-<a class="text-center" href="login_success.php">
-	<button class="btn btn-purple">Retour</button></a>
+<center>
+<a href="login_success.php"><button class="btn btn-purple">Retour</button></a>
+</center>

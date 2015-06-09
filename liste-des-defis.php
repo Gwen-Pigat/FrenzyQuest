@@ -1,26 +1,10 @@
-<?php 
-
-
-session_start();
+<?php include "include/header.php"; 
+	  include "include/connexion.php";
 
 
 if ($_SESSION['myusername'] != 'Admin') {
 	header('Location: index.html');
 }
-
-
-include "include/header.php"; 
-
-extract($_POST);
-$host = "localhost"; $username = "root"; $password = "motdepasselocalhostgwen"; $db_name = "QuitDouble"; $tbl_name = "members";
-mysql_connect("$host","$username","$password")or die("Cannot connect");	
-mysql_select_db("$db_name")or die("cannot select DB");
-$sql = "SELECT * FROM $tbl_name WHERE username='Admin'";
-$result = mysql_query($sql);
-$row = mysql_fetch_assoc($result);
-
-		echo "Loggé en tant que : <strong>'$_SESSION[myusername]'</strong> , <a href=index.html><button class=btn btn-danger>se déconnecter ?</button></a>
-		Vous disposez de : '<strong>$row[credits] C</strong>'";
 
 ?>
 
@@ -31,33 +15,58 @@ $row = mysql_fetch_assoc($result);
 
 <?php
 
-$host = "localhost";
-$username = "root";
-$password = "motdepasselocalhostgwen";
-$db_name = "QuitDouble";
 $tbl_name = "quests";
 
+$sql = "SELECT * FROM $tbl_name";
 
-mysql_connect("$host","$username","$password")or die("Cannot connect");	
-mysql_select_db("$db_name")or die("cannot select DB");
-
-
-$sql = "SELECT * FROM $tbl_name WHERE Validation='En attente de validation'";
-
-$result = mysql_query($sql);
+$result = mysqli_query($link, $sql);
 
 
-while ($row = mysql_fetch_assoc($result)) {
-	echo "<li><strong>'$row[Defi]' - '$row[Validation]'</strong></li>
+while ($row = mysqli_fetch_assoc($result)) {
+	echo "<ul><li>Proposé par <span class='user'> $row[Expediteur] </span><br />
+					Nom du défi	: <span class='user'> $row[Defi] </span><br />"; ?>
 
-<a href=php/delete-record.php?del=$row[id]>
-<button class=btn btn-danger>Enlever</button></a>
-	  <a href=php/update-record.php?update=$row[id]>
-<button class=btn btn-info>Validé</button></a>
-<br><br>";
+			<?php 
+			if ($row['Type'] == "Musique") {
+			echo "Catégorie : <span class='user'> $row[Type]  <i class='fa fa-music'></i></span><br />";
+			} 
+			elseif ($row['Type'] == "ADMIN") {
+			echo "Catégorie : <span class='user'> $row[Type]  <i class='fa fa-linux'></i></span><br />";
+			}
+			elseif ($row['Type'] == "Trash") {
+			echo "Catégorie : <span class='user'> $row[Type]  <i class='fa fa-linux'></i></span><br />";
+			}
+			elseif ($row['Type'] == "Sport") {
+			echo "Catégorie : <span class='user'> $row[Type]  <i class='fa fa-linux'></i></span><br />";
+			}
+			elseif ($row['Type'] == "Autre") {
+			echo "Catégorie : <span class='user'> $row[Type]  <i class='fa fa-linux'></i></span><br />";
+			}
+			else{
+			echo "Catégorie : <span class='user'> $row[Type]  <i class='fa fa-linux'></i></span><br />";	
+			}
+			?>
+
+			<?php echo "Description : <span class='user'> $row[Description] </span><br />
+		  	  	 	Prime à empocher : <span class='user'> $row[Bounty] <i class='glyphicon glyphicon-piggy-bank'></i></span><br />"; ?>
+
+		  	<?php 
+		  	if ($row['Validation'] == "Approuvé") {
+		  	echo "<a href=php/delete-record.php?del=$row[id]>
+			<button class='btn btn-danger'><i class='fa fa-thumbs-down'></i> Retirer</button></a></li></ul><br>";
+		  } 
+	  		else{
+		  	echo "<a href=php/delete-record.php?del=$row[id]>
+			<button class='btn btn-danger'><i class='fa fa-thumbs-down'></i> Retirer</button></a>
+		  		<a href=php/update-record.php?update=$row[id]>
+			<button class='btn btn-info'><i class='fa fa-thumbs-up'></i> Approuver</button></a></li></ul>
+			<br>";
+		  }
+
  } ?>
 
 </div>
 
-<a class="text-center" href="login_success.php">
-	<button class="btn btn-purple">Retour</button></a>
+<center>
+<a href="login_success.php"><button class="btn btn-purple">Retour</button></a>
+</center>	

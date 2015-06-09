@@ -7,23 +7,25 @@
 
 <div class="container text-center">
 
-  <?php if ($_POST['chiffre'] > $row['credits']) { ?>
-
-  <br><br><br>
-
-  La mise sur votre défi dépense la somme totale de votre compte !!<br />
-  <a href="defi.php">
-  <button class="btn btn-danger">Ré-essayer</button></a>
-
-  <?php } else{ ?>
-
 <h2>Votre proposition de défi nous a bien été envoyée.</h2>
 <h3>A présent, celui-ci va être vérifié par notre équipe avant d'être validé.</h3>
 
-<a href="defi.php">
-<button class="btn btn-success">Proposer un défi</button></a>
+<?php 
 
-<?php include "include/menu.php"; ?>
+$sql = "SELECT * FROM members WHERE username='$_SESSION[myusername]'";
+$result = mysqli_query($link ,$sql);
+$row = mysqli_fetch_assoc($result);
+
+if($_POST['chiffre'] > $row['credits']) { ?>
+
+  <em>PS: Attention à vos crédits !! La mise sur votre défi dépense la somme totale de votre compte !!</em><br />
+
+<?php } ?>
+
+<br>
+<i class='fa fa-spinner fa-pulse fa-5x'></i>
+
+<?php header("refresh: 4; url=login_success.php"); ?>
 
 </div>
 
@@ -201,15 +203,11 @@ if (isset($_POST) && isset($_POST['nom']) && isset($_POST['description']) && iss
       $ajout =  date("Y-m-d H:i:s");
       $valeur = "En attente de validation";
 
-      $base = mysql_connect("localhost","root","motdepasselocalhostgwen") or die("Erreur lors de la connexion a la BDD");
-      mysql_select_db("QuitDouble", $base);
-      mysql_query("INSERT INTO quests(expediteur, Type, defi, description, date, validation, bounty) VALUES ('$_SESSION[myusername]', '$select', '$defi', '$description', '$ajout', '$valeur', '$chiffre')");
+      mysqli_query($link , "INSERT INTO quests(expediteur, Type, defi, description, date, validation, bounty) VALUES ('$_SESSION[myusername]', '$select', '$defi', '$description', '$ajout', '$valeur', '$chiffre')");
 
-      mysql_close();
+      mysqli_close();
       
     }
   }
-
-}
 
 ?>

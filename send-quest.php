@@ -10,14 +10,15 @@
 <?php
 
 $sql = "SELECT * FROM $tbl_name WHERE username!='$_SESSION[myusername]'";
-$result = mysql_query($sql);
+$result = mysqli_query($link, $sql);
 $quest = $_GET['quest'];
 
-while ($row = mysql_fetch_assoc($result)) {
-	echo "<li><a href='quest.php?quest=$quest&send-to=$row[id]'><strong><i class='fa fa-user'></i> $row[username]</strong></a><br />
-		<a href='quest.php?quest=$quest&send-to=$row[id]'>
-		<button class='btn btn-warning'>Envoyer</button></li></a>";
-}
+
+	while ($row = mysqli_fetch_assoc($result)) {
+		echo "<li><a href='quest.php?quest=$quest&send-to=$row[id]'><strong><i class='fa fa-user'></i> $row[username]</strong></a><br />
+			<a href='quest.php?quest=$quest&send-to=$row[id]'>
+			<button class='btn btn-warning'>Envoyer</button></li></a>";
+	}
 
 ?>
 

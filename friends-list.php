@@ -9,18 +9,20 @@
 
 <?php
 
-$sql_liste = "SELECT id FROM members WHERE username='$_SESSION[myusername]'"; 
-$result_liste = mysql_query($sql_liste);
+$sql_liste = "SELECT id FROM members WHERE username!='$_SESSION[myusername]'"; 
+$result_liste = mysqli_query($link, $sql_liste);
 
-$row_liste = mysql_fetch_assoc($result_liste);
+$row_liste = mysqli_fetch_assoc($result_liste);
 
 
-$sql = "SELECT * FROM Amis WHERE (Utilisateur_first!='$row_liste[id]') OR (Utilisateur_second!='$row_liste[id]')";
-$result = mysql_query($sql);
+$sql = "SELECT * FROM Amis WHERE (Utilisateur_first!='$_SESSION[myusername]') AND (Utilisateur_second!='$_SESSION[myusername]')";
+$result = mysqli_query($link, $sql);
 
-while ($row = mysql_fetch_assoc($result)) {
 
-	echo "<li>$row[Utilisateur_second]</li>";
+while ($row = mysqli_fetch_assoc($result)) {
+
+	echo "<li>$row[Utilisateur_first]</li>
+	<li>$row[Utilisateur_second]</li>";
 }
 
 ?>
