@@ -65,4 +65,4 @@ if (isset($_SESSION['myusername']) && !empty($_SESSION['myusername'])) {
     // 
   }
 
-	  header( "refresh:2; url=mes-defis.php" ); ?>
+	  header( "refresh:2; url=quests-console.php" ); ?>

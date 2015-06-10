@@ -5,7 +5,7 @@ session_start();
 include "../include/header.php"; 
 include "../include/connexion.php"; 
 
-if (isset($_SESSION) && $_SESSION['myusername'] == 'Admin') {
+if ($_SESSION['myusername'] == 'Admin') {
 
 	//Ajout de + 10 crédits
 
@@ -57,13 +57,14 @@ if (isset($_SESSION) && $_SESSION['myusername'] == 'Admin') {
 		$result = mysqli_query($link, $sql);
 		$row = mysqli_fetch_assoc($result);
 	}
+	else{
+	header('Location: logout.php');
+	}
+
 }
 
 header('Location: ../login_success.php');
 
 
-else{
-	header('Location: logout.php');
-}
 
 ?>
