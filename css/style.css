@@ -2,6 +2,9 @@ body{
   background-color: #F1FFDF
 }
 
+.btn-custom{color: #fff; background-color: #000; border: 2px #000 solid;}
+.btn:hover, .btn-lg:hover{transition: 0.4s; background-color: #fff; color:#000}
+
 .form-inscription{
 	margin-top: 10%;
 }
@@ -11,8 +14,11 @@ body{
   margin-top: 130%;
 }
 
-.absolute a{color: #FF0000 ;text-decoration:none}
-.absolute a:hover{text-shadow: 0 0 1px #ff0000; transition: 0.4s;}
+.red a{color: #FF0000 ;text-decoration:none}
+.red a:hover{text-shadow: 0 0 1px #ff0000; transition: 0.4s;}
+
+.blue a{color: #5bc0de ;text-decoration:none}
+.blue a:hover{text-shadow: 0 0 1px #5bc0de; transition: 0.4s;}
 
 .form-inscription input{
 	padding: 2%;

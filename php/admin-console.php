@@ -14,7 +14,7 @@ if (isset($_SESSION['myusername']) && $_SESSION['myusername'] == 'Admin') {
 
 	if (isset($_GET['del'])) {
 		$id = $_GET['del'];
-		$sql = "DELETE FROM quests WHERE id='$id'";
+		$sql = "UPDATE quests SET Validation = 'Rejeté' WHERE id='$id'";
 		$result = mysqli_query($link, $sql);
 
 		$sql = "DELETE FROM SendQuest WHERE id_quest='$id'";

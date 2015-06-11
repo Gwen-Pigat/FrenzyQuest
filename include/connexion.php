@@ -32,14 +32,20 @@ else{
 	header('Location: php/logout.php');
 }
 
-$sql = "SELECT Destinataire FROM SendQuest WHERE Destinataire='$_SESSION[myusername]' AND Statut='En attente'";
+$sql = "SELECT * FROM SendQuest WHERE Destinataire='$_SESSION[myusername]'";
 $result = mysqli_query($link, $sql);
 $row = mysqli_fetch_assoc($result);
 
-if ($row) { ?>
+if ($row["Statut"] == "En attente") { ?>
 <br>
-<div class="absolute">
-<a href="quests-console.php"><img src="icons/exclamation.png" width="25"> Défi disponible</a>
+<div class="absolute red">
+<a href="quests-console.php"><img src="icons/quest_new.png" width="25"> Défi disponible</a>
 </div>
+<?php }
 
+elseif($row['Statut'] == "En cours"){ ?>
+<br>
+<div class="absolute blue">
+<a href="quests-console.php"><img src="icons/quest_load.png" width="25"> Défi en cours</a>
+</div>
 <?php } ?>

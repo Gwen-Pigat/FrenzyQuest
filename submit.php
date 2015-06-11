@@ -49,7 +49,7 @@ else{
 
       extract($_POST);
 
-      $ajout =  date("Y-m-d H:i:s");
+      $ajout =  "Le ".date("d/m/Y")." à ".date("H:i:s");
       $valeur = "En attente de validation";
 
       mysqli_query($link , "INSERT INTO quests(expediteur, Type, defi, description, date, validation, bounty) VALUES ('$_SESSION[myusername]', '$select', '$defi', '$description', '$ajout', '$valeur', '$chiffre')");
