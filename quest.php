@@ -32,37 +32,37 @@ if (isset($_SESSION['myusername']) && !empty($_SESSION['myusername'])) {
     $result = mysqli_query($link, $sql);
     $row = mysqli_fetch_assoc($result);
 
-	//PHPMAILERl
+	// PHPMAILERl
 
-    // require "PHPMailer/class.phpmailer.php";
+    require "PHPMailer/class.phpmailer.php";
 
-    // $mail = new phpmailer();
-    // // $mail->AddStringAttachment($download, 'Facture_'.$nom.'_'.$date.'.pdf');
+    $mail = new phpmailer();
+    // $mail->AddStringAttachment($download, 'Facture_'.$nom.'_'.$date.'.pdf');
 
-    // $mail->FromName = "Un utilisateur vous à défié !!";
-    // $mail->Subject = "$row_quest[Defi] - Défi proposé";
+    $mail->FromName = "Un utilisateur vous à défié !!";
+    $mail->Subject = "$row_quest[Defi] - Défi proposé";
     
-    // $body = "L'utilisateur $_SESSION[myusername] vous à envoyé un défi, voici ses infos :\n\n\n
-    // Nom du défi:           $row_quest[Defi]
-    // Sa description : $row_quest[Description]\n\n\n\n\n
+    $body = "L'utilisateur $_SESSION[myusername] vous à envoyé un défi, voici ses infos :\n\n\n
+    Nom du défi:           $row_quest[Defi]
+    Sa description : $row_quest[Description]\n\n\n\n\n
 
 
-    // J’accepte les CGV et donne expressément mandat à la société LEGASPHERE de saisir en mon nom et pour mon compte la juridiction compétente.\n\n\n
+    J’accepte les CGV et donne expressément mandat à la société LEGASPHERE de saisir en mon nom et pour mon compte la juridiction compétente.\n\n\n
 
-    // Le robot achat PixOFHeaven.\n
-    // ---------------------------------------\n
-    // Ceci est un mail automatique, Merci de ne pas y répondre.";
+    Le robot achat PixOFHeaven.\n
+    ---------------------------------------\n
+    Ceci est un mail automatique, Merci de ne pas y répondre.";
 
-    // $mail->Body = $body;
+    $mail->Body = $body;
 
-    // // Add a recipient address
-    // $mail->AddAddress('$row[email]');
+    // Add a recipient address
+    $mail->AddAddress('$row[email]');
 
-    // if(!$mail->Send())
-    //     echo ('');
-    // else
-    //     echo ('');
-    // 
+    if(!$mail->Send())
+        echo ('');
+    else
+        echo ('');
+    
   }
 
 	  header( "refresh:2; url=quests-console.php" ); ?>

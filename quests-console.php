@@ -4,6 +4,9 @@
 
 <?php 
 
+
+//Quêtes en cours de réalisation
+
 	if (isset($_GET['quest_loading'])) { ?>
 
 	<div class="liste-defis">
@@ -24,17 +27,15 @@
 			$row = mysqli_fetch_assoc($result);
 
 			echo "
-			<ul><li>L'utilisateur <strong><span class='user'>$row[Expediteur]</span></strong> vous défie !!<br>
+			<ul><li>Défi de <strong><span class='user'>$row[Expediteur]</span></strong> accepté.<br>
 			Nom du défi : <strong><span class='user'>$row[Defi]</span></strong><br>
 			Type : <strong><span class='user'>$row[Type]</span></strong><br>
 			Description : <strong><span class='user'>$row[Description]</span></strong><br>
 			id : <strong><span class='user'>$row[id]</span></strong><br>
-			Prime : <strong><span class='user'>$row[Bounty] <i class='glyphicon glyphicon-piggy-bank'></i></span></strong><br>
-			<a href='php/quests-choice.php?refuse_quest=$row_quest[id_quest]'>
-			<button class='btn btn-danger'><i class='fa fa-thumbs-down'></i> Refuser</button></a>
-	  		<a href='php/quests-choice.php?accept_quest=$row_quest[id_quest]'>
-			<button class='btn btn-info'><i class='fa fa-thumbs-up'></i> Accepter</button></a></li></ul>
-			<br>";
+			La prime est de : <strong><span class='user'>$row[Bounty] <i class='glyphicon glyphicon-piggy-bank'></i></span></strong><br>
+			<button class='btn btn-success'>Début : $row_quest[Start]</button>
+			<button class='btn btn-danger'>Fin : $row_quest[End]</button></li></ul><br>
+			<center><button style='margin: auto' class='btn btn-purple'>Vous avez fini ?</button></center>";
 	}
 ?>
 
@@ -45,6 +46,10 @@
 <br><br>
 
 <?php } 
+
+
+//Quêtes recues
+
 
 	elseif (isset($_GET['quest_receive'])) { ?>
 
@@ -58,6 +63,11 @@
 
 	$sql_send = "SELECT * FROM SendQuest WHERE Destinataire='$myaccount' AND statut='En attente'";
 	$result_send = mysqli_query($link, $sql_send);
+
+	if (mysqli_num_rows($result_send) == 0) {
+			echo "<center><a href='defi.php'><button class='btn btn-danger'>
+			<i class='glyphicon glyphicon-edit'></i> Aucune défi ? Lancez-vous !!</button></a></center>";
+			}
 	
 	while ($row_quest = mysqli_fetch_assoc($result_send)) {
 
@@ -86,6 +96,10 @@
 <br><br>
 
 <?php } 
+
+
+
+//Quêtes refusées
 
 	elseif (isset($_GET['quest_refused'])) { ?>
 
@@ -99,6 +113,11 @@
 
 	$sql_send = "SELECT * FROM SendQuest WHERE Destinataire='$myaccount' AND statut='Refusé'";
 	$result_send = mysqli_query($link, $sql_send);
+
+	if (mysqli_num_rows($result_send) == 0) {
+			echo "<center><a href='defi.php'><button class='btn btn-success'>
+			<i class='glyphicon glyphicon-edit'></i> Aucune défi ? Lancez-vous !!</button></a></center>";
+			}
 	
 	while ($row_quest = mysqli_fetch_assoc($result_send)) {
 
@@ -127,6 +146,10 @@
 <br><br>
 
 <?php } 
+
+
+
+//Quêtes terminées
 
 	elseif (isset($_GET['quest_done'])) { ?>
 
@@ -140,6 +163,11 @@
 
 	$sql_send = "SELECT * FROM SendQuest WHERE Destinataire='$myaccount' AND statut='Validé'";
 	$result_send = mysqli_query($link, $sql_send);
+
+	if (mysqli_num_rows($result_send) == 0) {
+	echo "<center><a href='defi.php'><button class='btn btn-warning'>
+	<i class='glyphicon glyphicon-edit'></i> Aucune défi ? Lancez-vous !!</button></a></center>";
+	}
 	
 	while ($row_quest = mysqli_fetch_assoc($result_send)) {
 
@@ -168,6 +196,9 @@
 <br><br>
 
 <?php } 
+
+
+//Mes défis
 
 	elseif (isset($_GET['quests'])) { ?>
 
@@ -213,6 +244,7 @@ else{
 					   		}
 	}
 }
+
 ?>
 
 </div>
@@ -232,6 +264,9 @@ $sql = "SELECT * FROM SendQuest WHERE Destinataire='$_SESSION[myusername]'";
 $result = mysqli_query($link, $sql);
 $row = mysqli_fetch_assoc($result);
 
+
+
+
  ?>
 
 <div class="container text-center">
@@ -239,21 +274,27 @@ $row = mysqli_fetch_assoc($result);
 
 	<?php 
 
-	echo "<a href='quests-console.php?quests=$row[Destinataire]'><button class='btn-lg btn-primary'>Mes défis</button></a>";
+	echo "<a href='quests-console.php?quests=$row[Destinataire]'><button class='btn-lg btn-primary'>Mes défis</button></a><br><br>";
 
+		if ($row['Statut'] == "En attente" || $row['Statut'] == "En cours" || $row['Statut'] == "Terminé" || $row['Statut'] == "Refusé"){
+	echo "<a href='quests-console.php?quest_receive=$row[Destinataire]'><button class='btn btn-danger'>Recus</button></a>";	
+	echo "<a href='quests-console.php?quest_loading=$row[Destinataire]'><button class='btn btn-info'>En cours</button></a><br>";
+	echo "<a href='quests-console.php?quest_done=$row[Destinataire]'><button class='btn btn-warning'>Terminés</button></a>";		
+	echo "<a href='quests-console.php?quest_refused=$row[Destinataire]'><button class='btn btn-success'>Refusés</button></a>";	
+	 }
 
-		if($row['Statut'] == "En attente"){
-	echo "<a href='quests-console.php?quest_receive=$row[Destinataire]'><button class='btn-lg btn-danger'>Défis recus</button></a>";	
-	 }
-	elseif ($row['Statut'] == "En cours"){ 
-	echo "<a href='quests-console.php?quest_loading=$row[Destinataire]'><button class='btn-lg btn-info'>Défis en cours</button></a>";	
-	 }
-	elseif ($row['Statut'] == "Terminé"){ 
-	echo "<a href='quests-console.php?quest_done=$row[Destinataire]'><button class='btn-lg btn-success'>Défis terminés</button></a>";	
-	 }
-	elseif ($row['Statut'] == "Refusé"){ 
-	echo "<a href='quests-console.php?quest_refused=$row[Destinataire]'><button class='btn-lg btn-success'>Défis refusés</button></a>";	
-	 } ?>
+	// elseif ($row['Statut'] == "En cours"){ 
+	// echo "<a href='quests-console.php?quest_loading=$row[Destinataire]'><button class='btn-lg btn-info'>Défis en cours</button></a><br>";	
+	//  }
+
+	// elseif ($row['Statut'] == "Terminé"){ 
+	// echo "<a href='quests-console.php?quest_done=$row[Destinataire]'><button class='btn-lg btn-success'>Défis terminés</button></a><br>";	
+	//  }
+	// elseif ($row['Statut'] == "Refusé"){ 
+	// echo "<a href='quests-console.php?quest_refused=$row[Destinataire]'><button class='btn-lg btn-success'>Défis refusés</button></a>";	
+	//  } 
+
+	 ?>
 
 </div>
 
