@@ -33,9 +33,8 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-unlock"></i> Mon compte<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="mon-profil.php"><i class="glyphicon glyphicon-user"></i> Profil</a></li>
+            <li><a href="mon-profil.php"><i class="fa fa-cogs"></i> Profil</a></li>
             <li><a href="friends-list.php"><i class="fa fa-user-plus"> Mes amis </i></a></li>
-            <li><a href="mes-defis.php"><i class="glyphicon glyphicon-list-alt"></i> Mes défis</a></li>
           </ul>
         </li>
       </ul>

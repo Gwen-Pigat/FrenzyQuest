@@ -51,6 +51,6 @@ if (isset($_SESSION['myusername'])) {
 
 }
 
-header("Refresh: 4; url=../quests-console.php");
+header("Refresh: 2; url=../quests-console.php");
 
 ?>

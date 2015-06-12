@@ -5,23 +5,33 @@
 
 <div class="liste-defis">
 
-	<h2><i class="fa fa-users"></i> Amis</h2>
+	<h2><i class="fa fa-users"></i> Mes amis</h2>
 
 <?php
 
-$myaccount = $_SESSION ['myusername'];
+$account = $_SESSION ['myusername'];
 
 
-$sql = "SELECT * FROM Amis";
-$result = mysqli_query($link, $sql);
-$row = mysqli_fetch_assoc($result);
+$row = mysqli_fetch_assoc(mysqli_query($link, "SELECT * FROM RequeteAmi WHERE Nom='$account' OR Invite='$account'"));
 
 if ($row == 0) {
-	echo "<a href='liste-utilisateurs.php'><button class='btn btn-success'><i class='fa fa-user-plus'></i> Ajouter un ami</button></a>";
+	echo "<center><a href='liste-utilisateurs.php'><button class='btn btn-success'><i class='fa fa-user-plus'></i> Pas d'ami ? Ajouter en un</button></a></center><br>";
 }
+
 else{
-	echo "<li>$row[Utilisateur_first]</li>
-	<li>$row[Utilisateur_second]</li>";
+
+	$result = mysqli_query($link, "SELECT * FROM Amis WHERE Utilisateur_first!='$_SESSION[myusername]' AND Utilisateur_second='$_SESSION[myusername]'");
+
+	while ($row = mysqli_fetch_assoc($result)) {
+		echo "<li><strong>$row[Utilisateur_first]</strong></li>";
+	}
+
+	$result = mysqli_query($link, "SELECT * FROM Amis WHERE Utilisateur_first='$_SESSION[myusername]' AND Utilisateur_second!='$_SESSION[myusername]'");
+
+	while ($row = mysqli_fetch_assoc($result)) {
+		echo "<li><strong>$row[Utilisateur_second]</strong></li>";
+	}
+	
 }
 
 ?>

@@ -111,8 +111,7 @@
 
 	$myaccount = $_SESSION['myusername'];
 
-	$sql_send = "SELECT * FROM SendQuest WHERE Destinataire='$myaccount' AND statut='Refusé'";
-	$result_send = mysqli_query($link, $sql_send);
+	$result_send = mysqli_query($link, "SELECT * FROM SendQuest WHERE Destinataire='$myaccount' AND statut='Refusé'");
 
 	if (mysqli_num_rows($result_send) == 0) {
 			echo "<center><a href='defi.php'><button class='btn btn-custom'>
@@ -121,9 +120,7 @@
 	
 	while ($row_quest = mysqli_fetch_assoc($result_send)) {
 
-			$sql = "SELECT * FROM quests WHERE id='$row_quest[id_quest]'";
-			$result = mysqli_query($link, $sql);
-			$row = mysqli_fetch_assoc($result);
+			$row = mysqli_fetch_assoc(mysqli_query($link, "SELECT * FROM quests WHERE id='$row_quest[id_quest]'"));
 
 			echo "<ul><li>Défi de <strong><span class='user'>$row[Expediteur]</span></strong> refusé<br>
 			Nom du défi : <strong><span class='user'>$row[Defi]</span></strong><br>
@@ -229,12 +226,12 @@ else{
 	<i class='glyphicon glyphicon-edit'></i> Proposer un autre ?</button></a>";
 					   		}
 					   		elseif ($row['Envoi'] == "Oui" AND $row['Validation'] == "Approuvé") {
-					   		echo "<button class='btn btn-danger'><strong>Défi deja envoyé</strong></button><br><a href='defi.php'><button class='btn btn-custom'>
+					   		echo "<button class='btn btn-danger'><i class='fa fa-check-square-o'></i> <strong>Défi déjà envoyé</strong></button><br><a href='defi.php'><button class='btn btn-custom'>
 	<i class='glyphicon glyphicon-edit'></i> Un nouveau ?</button></a>";
 					   		}
 					   		else{
 					   		echo "<button class='btn btn-success'><strong>Défi '$row[Validation]'</strong></button>
-					   		  <a href='send-quest.php?quest=$row[id]'><button class='btn btn-warning'>Envoyer ce défi</button></a>";		
+					   		  <a href='send-quest.php?quest=$row[id]'><button class='btn btn-warning'><i class='fa fa-envelope'></i> Envoyer ce défi</button></a>";		
 					   		}
 
 					   		$sql_credits = "SELECT credits FROM members WHERE username ='$_SESSION[myusername]'";

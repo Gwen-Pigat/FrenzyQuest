@@ -3,8 +3,10 @@
 
 <div class="container text-center">
 
-<h1>Bienvenue à vous <strong>'<?php echo $_SESSION['myusername']; ?>'</strong> !!</h1>
+<h1>Bienvenue à vous <strong><?php echo $_SESSION['myusername']; ?></strong> !!</h1>
 
 <?php include "include/menu.php"; ?>
 
 </div>
+
+<?php include "include/notif.php"; ?>

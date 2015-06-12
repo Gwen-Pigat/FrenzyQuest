@@ -3,18 +3,22 @@ body{
 }
 
 .btn-custom{color: #fff; background-color: #000; border: 2px #000 solid;}
-.btn:hover, .btn-lg:hover{transition: 0.4s; background-color: #fff; color:#000}
 
 .form-inscription{
 	margin-top: 10%;
 }
 
 .absolute{
-  position: fixed;
-  margin-top: 130%;
+  font-size: 14px;
+  margin-top: 126%;
+  position: absolute;
 }
 
-.red a{color: #FF0000 ;text-decoration:none}
+.red{margin-top: 126%;}
+.blue{margin-bottom: 126%;}
+.friend{margin-top: 126%; margin-left: 65%;}
+
+.red a{color: #FF0000 ;text-decoration:none; }
 .red a:hover{text-shadow: 0 0 1px #ff0000; transition: 0.4s;}
 
 .blue a{color: #5bc0de ;text-decoration:none}

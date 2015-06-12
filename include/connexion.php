@@ -32,20 +32,32 @@ else{
 	header('Location: php/logout.php');
 }
 
-$sql = "SELECT * FROM SendQuest WHERE Destinataire='$_SESSION[myusername]'";
-$result = mysqli_query($link, $sql);
-$row = mysqli_fetch_assoc($result);
+$row = mysqli_fetch_assoc(mysqli_query($link,"SELECT * FROM SendQuest WHERE Destinataire='$_SESSION[myusername]' AND Statut='En attente'"));
 
-if ($row["Statut"] == "En attente") { ?>
+if ($row) { ?>
 <br>
 <div class="absolute red">
-<a href="quests-console.php"><img src="icons/quest_new.png" width="25"> Défi disponible</a>
+<a href="quests-console.php"><i class='fa fa-exclamation'></i> Défi disponible</a>
 </div>
 <?php }
 
-elseif($row['Statut'] == "En cours"){ ?>
+$row = mysqli_fetch_assoc(mysqli_query($link,"SELECT * FROM SendQuest WHERE Destinataire='$_SESSION[myusername]' AND Statut='En cours'"));
+
+if($row){ ?>
 <br>
 <div class="absolute blue">
-<a href="quests-console.php"><img src="icons/quest_load.png" width="25"> Défi en cours</a>
+<a href="quests-console.php"><i class='fa fa-cog fa-spin'></i> Défi en cours</a>
 </div>
-<?php } ?>
+<?php }
+
+$row = mysqli_fetch_assoc(mysqli_query($link, "SELECT * FROM RequeteAmi WHERE Invite='$_SESSION[myusername]' AND Statut='En attente'"));
+
+if ($row) { 
+
+$row = mysqli_fetch_assoc(mysqli_query($link, "SELECT * FROM members WHERE username='$row[Nom]'"));
+
+echo "<div class='absolute friend'>
+<a href='fiche-profile.php?user=$row[id].php'><i class='fa fa-user-plus'></i> Requête d'ami</a>
+</div>";
+
+ } ?>
