@@ -1,1 +1,1 @@
-<?php session_start(); session_destroy(); header('Location: ../index.html'); mysql_close(); ?>
+<?php session_start(); session_destroy(); mysql_close(); header('Location: ../index.html'); ?>
