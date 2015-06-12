@@ -125,17 +125,14 @@
 			$result = mysqli_query($link, $sql);
 			$row = mysqli_fetch_assoc($result);
 
-			echo "<ul><li>L'utilisateur <strong><span class='user'>$row[Expediteur]</span></strong> vous défie !!<br>
+			echo "<ul><li>Défi de <strong><span class='user'>$row[Expediteur]</span></strong> refusé<br>
 			Nom du défi : <strong><span class='user'>$row[Defi]</span></strong><br>
 			Type : <strong><span class='user'>$row[Type]</span></strong><br>
 			Description : <strong><span class='user'>$row[Description]</span></strong><br>
 			id : <strong><span class='user'>$row[id]</span></strong><br>
 			Prime : <strong><span class='user'>$row[Bounty] <i class='glyphicon glyphicon-piggy-bank'></i></span></strong><br>
-			<a href='php/quests-choice.php?refuse_quest=$row_quest[id_quest]'>
-			<button class='btn btn-danger'><i class='fa fa-thumbs-down'></i> Refuser</button></a>
-	  		<a href='php/quests-choice.php?accept_quest=$row_quest[id_quest]'>
-			<button class='btn btn-info'><i class='fa fa-thumbs-up'></i> Accepter</button></a></li></ul>
-			<br>";
+			<a href='php/quests-choice.php?refuse_quest=$row_quest[id_quest]'><br>
+			<button class='btn btn-danger'><i class='fa fa-ban'></i> Vous avez refusé ce défi</button>";
 	}
 ?>
 
@@ -219,6 +216,7 @@ if (mysqli_num_rows($result) == 0) {
 else{
 
 	while ($row = mysqli_fetch_assoc($result)) {
+
 		echo "<ul><li><strong>Défi</strong> : '$row[Defi]' <br />
 					   <strong>Catégorie</strong> : '$row[Type]' <br />
 					   <strong>Description</strong> : '$row[Description]' <br /><br />";
@@ -229,6 +227,10 @@ else{
 					   		elseif ($row['Validation'] == "Rejeté") {
 					   		echo "<button class='btn btn-danger'><strong>Défi rejeté par l'Administrateur</strong></button><br><a href='defi.php'><button class='btn btn-custom'>
 	<i class='glyphicon glyphicon-edit'></i> Proposer un autre ?</button></a>";
+					   		}
+					   		elseif ($row['Envoi'] == "Oui" AND $row['Validation'] == "Approuvé") {
+					   		echo "<button class='btn btn-danger'><strong>Défi deja envoyé</strong></button><br><a href='defi.php'><button class='btn btn-custom'>
+	<i class='glyphicon glyphicon-edit'></i> Un nouveau ?</button></a>";
 					   		}
 					   		else{
 					   		echo "<button class='btn btn-success'><strong>Défi '$row[Validation]'</strong></button>

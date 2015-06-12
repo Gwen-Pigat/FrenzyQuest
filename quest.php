@@ -19,18 +19,26 @@ if (isset($_SESSION['myusername']) && !empty($_SESSION['myusername'])) {
 	  $user = $_GET['send-to'];
 	  $quest = $_GET['quest'];
 
+    $sql = "SELECT * FROM SendQuest WHERE Destinataire='$user' AND id_quest='$quest'";
+    $row = mysqli_fetch_assoc(mysqli_query($link, $sql));
+
+    if ($row == 1) {
+      echo "Cette quête à déja été envoyé à cet utilisateur !!";
+    }
+    
+    else{
+
     $sql = "SELECT * FROM members WHERE id='$user'";
 	  $result = mysqli_query($link, $sql);
 	  $row = mysqli_fetch_assoc($result);
 
-	  $sql_quest = "SELECT * FROM quests WHERE id='$quest'";
-	  $result_quest = mysqli_query($link, $sql_quest);
-	  $row_quest = mysqli_fetch_assoc($result_quest);
-
+	  $row_quest = mysqli_fetch_assoc(mysqli_query($link, "SELECT * FROM quests WHERE id='$quest'"));
+    $row_envoi = mysqli_fetch_assoc(mysqli_query($link, "UPDATE quests SET Envoi='Oui' WHERE id='$quest'")); 
 
     $sql = "INSERT INTO SendQuest(Expediteur, Destinataire, id_quest) VALUES ('$myaccount', '$row[username]', '$quest')";
     $result = mysqli_query($link, $sql);
     $row = mysqli_fetch_assoc($result);
+  }
 
 	// PHPMAILERl
 

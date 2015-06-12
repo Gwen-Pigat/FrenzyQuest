@@ -24,7 +24,7 @@ $row = mysqli_fetch_assoc($result);
    	echo "Crédits : <span class='danger'> $row[credits] <i class='glyphicon glyphicon-piggy-bank'></i></span>";
     }
     else{
-    echo "Crédits : <span class='user'> $row[credits] <i class='glyphicon glyphicon-piggy-bank'></i></span>";
+    echo "Crédits : <span class='user'> $row[credits] <i class='fa fa-jpy'></i></span>";
 	}
 }
 

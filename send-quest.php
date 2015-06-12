@@ -13,7 +13,6 @@ $sql = "SELECT * FROM $tbl_name WHERE username!='$_SESSION[myusername]'";
 $result = mysqli_query($link, $sql);
 $quest = $_GET['quest'];
 
-
 	while ($row = mysqli_fetch_assoc($result)) {
 		echo "<li><a href='quest.php?quest=$quest&send-to=$row[id]'><strong><i class='fa fa-user'></i> $row[username]</strong></a><br />
 			<a href='quest.php?quest=$quest&send-to=$row[id]'>
