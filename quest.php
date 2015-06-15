@@ -71,28 +71,27 @@ if (isset($_SESSION['myusername']) && isset($_GET['send_friend']) && !empty($_SE
 
 //Envoi à un inconnu
 
-if (isset($_SESSION['myusername']) && isset($_GET['send_friend']) && !empty($_SESSION['myusername'])) {
+if (isset($_SESSION['myusername']) && isset($_GET['send_unknown']) && !empty($_SESSION['myusername'])) {
 
       $myaccount = $_SESSION['myusername'];
-      $user = $_GET['send_friend'];
+      $user = $_GET['send_unknown'];
 
-      $sql = "SELECT * FROM members WHERE username='$user'";
+      $sql = "SELECT * FROM members WHERE id='$user'";
       $result = mysqli_query($link, $sql);
       $row = mysqli_fetch_assoc($result);
 
 
      echo "<h3><i class='fa fa-check fa-2x'></i> Défi envoyé à :<br />
-     <strong><h2>'".$row['username']."'<h2></strong></h3>
+     <strong><h2>'?????????'<h2></strong></h3>
      <br /><br /><br /><em><i class='fa fa-circle-o-notch fa-spin'></i> Vous allez être redirigé automatiquement</em>";
   
-
-    $user = $_GET['send_friend'];
+    $user = $_GET['send_unknown'];
     $quest = $_GET['quest'];
 
     $sql = "SELECT * FROM SendQuest WHERE Destinataire='$user' AND id_quest='$quest'";
     $row = mysqli_fetch_assoc(mysqli_query($link, $sql));
 
-    $sql = "SELECT * FROM members WHERE username='$user'";
+    $sql = "SELECT * FROM members WHERE id='$user'";
     $result = mysqli_query($link, $sql);
     $row = mysqli_fetch_assoc($result);
 

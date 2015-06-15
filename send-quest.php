@@ -4,7 +4,7 @@
 <title>Utilisateurs</title>
 
 
-<div class="liste-defis">
+<div class="liste-defis text-center">
 
 
 <?php
@@ -42,7 +42,7 @@ elseif (isset($_GET['send_unknown'])) { ?>
 
 <?php $quest = $_GET['send_unknown']; 
 
-	$row = mysqli_fetch_assoc(mysqli_query($link, "SELECT * FROM members WHERE username!='$_SESSION[myusername]'"));
+	$row = mysqli_fetch_assoc(mysqli_query($link, "SELECT * FROM members WHERE username!='$_SESSION[myusername]' ORDER BY rand()"));
 
 	 echo "<a href='quest.php?quest=$quest&send_unknown=$row[id]'><button class='btn btn-info'><i class='fa fa-envelope'></i> Envoyer à un inconnu </button></a></div>";
 	 echo "<center><a class='text-center' href='send-quest.php?quest=$quest'><button class='btn btn-purple'>Retour</button></a></center>";

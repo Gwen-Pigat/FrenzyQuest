@@ -19,9 +19,13 @@
 
 	$sql_send = "SELECT * FROM SendQuest WHERE Destinataire='$myaccount' AND statut='En cours'";
 	$result_send = mysqli_query($link, $sql_send);
+
+	if (mysqli_num_rows($result_send) == 0) {
+			echo "<center><a href='defi.php'><button class='btn btn-custom'>
+			<i class='glyphicon glyphicon-edit'></i> Aucun défi ? Lancez-vous !!</button></a></center>";
+			}
 	
 	while ($row_quest = mysqli_fetch_assoc($result_send)) {
-
 			$sql = "SELECT * FROM quests WHERE id='$row_quest[id_quest]'";
 			$result = mysqli_query($link, $sql);
 			$row = mysqli_fetch_assoc($result);

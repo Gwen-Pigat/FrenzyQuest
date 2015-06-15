@@ -43,12 +43,13 @@ if ($row) { ?>
 
 $row = mysqli_fetch_assoc(mysqli_query($link,"SELECT * FROM SendQuest WHERE Destinataire='$_SESSION[myusername]' AND Statut='En cours'"));
 
-if($row){ ?>
-<br>
-<div class="absolute blue">
-<a href="quests-console.php"><i class='fa fa-cog fa-spin'></i> Défi en cours</a>
-</div>
-<?php }
+if($row){
+
+echo "<br>
+<div class='absolute blue'>
+<a href='quests-console.php?'><i class='fa fa-cog fa-spin'></i> En cours</a>
+</div>";
+		}
 
 $row = mysqli_fetch_assoc(mysqli_query($link, "SELECT * FROM RequeteAmi WHERE Invite='$_SESSION[myusername]' AND Statut='En attente'"));
 

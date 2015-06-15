@@ -30,7 +30,8 @@
 				</select><br>
 				<input maxlength="65" type="text" placeholder="Nom du défi" x-moz-errormessage="Veuillez entrer une adresse e-mail valide" name="defi" required><br>	
 				<textarea maxlength="255" type="text" placeholder="Entrez la description de votre défi" style="margin: 0px; height: 59px; width: 290px;" name="description" required></textarea><br>
-				<input class="chiffre" type="number" placeholder="Votre mise pour ce défi" name="chiffre" required><br>
+				<input class="chiffre" type="number" placeholder="Votre prime pour ce défi" name="chiffre" required><br>
+				<p class='user'>PS : Prime maximale = "Vos crédits / 2" </p>
 				<input class="btn btn-danger" type="submit" value="Envoyer">
 			</form>
 

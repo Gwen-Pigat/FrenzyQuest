@@ -13,17 +13,13 @@ $sql = "SELECT * FROM members WHERE username='$_SESSION[myusername]'";
 $result = mysqli_query($link ,$sql);
 $row = mysqli_fetch_assoc($result);
 
-?>
 
+if($_POST['chiffre'] > ($row['credits'] / 2)) {
 
-<?php
-
-if($_POST['chiffre'] > $row['credits']) { ?>
-
-  <em>La mise sur votre défi dépense la somme totale de votre compte, veuillez ré-essayer !!</em><br />
-  <i class='fa fa-spinner fa-pulse fa-2x'></i>
+  echo "<p class='condition'>Votre mise doit au maximum correspondre à la moitié de vos crédits !! <br>(dans votre cas le maximum sera de <span class='user'>".($row['credits'] / 2)." <i class='fa fa-jpy'></i></span>)</p><br />
+  <i class='fa fa-spinner fa-pulse fa-4x'></i>";
   
-<?php header("refresh: 4; url=defi.php");
+  header("refresh: 6; url=defi.php");
 
 }
 
