@@ -49,7 +49,6 @@ else{
       $valeur = "En attente de validation";
 
       mysqli_query($link , "INSERT INTO quests(expediteur, Type, defi, description, date, validation, bounty) VALUES ('$_SESSION[myusername]', '$select', '$defi', '$description', '$ajout', '$valeur', '$chiffre')");
-
       mysqli_close();
       
     }

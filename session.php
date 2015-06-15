@@ -1,3 +1,21 @@
+<script type="text/javascript">
+
+var xhr = new XMLHttpRequest();
+ 
+// Lorsqu'un réponse est émise par le serveur
+xhr.onreadystatechange = function() {
+    if (xhr.status == 200 && xhr.readyState == 4) {
+        document.getElementById('content').innerHTML = xhr.responseText;
+         
+        // xhr.responseText contient exactement ce que la page PHP renvoi
+    }
+};
+ 
+xhr.open('GET', 'session.php');
+
+</script>
+
+
 <?php 
 
 session_start();
